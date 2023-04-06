@@ -1,0 +1,50 @@
+name: WordPress CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        extensions: mbstring, zip, curl, gd, xml
+
+    - name: Install Composer packages
+      run: composer install
+
+    - name: Install NPM packages
+      run: npm install
+
+    - name: Build assets
+      run: npm run build
+
+    - name: Setup MySQL
+      uses: docker/setup-mysql@v1
+      with:
+        mysql-version: '5.7'
+        password: ${{ secrets.MYSQL_PASSWORD }}
+
+    - name: Run tests
+      run: phpunit
+
+    - name: Deploy to server
+      uses: easingthemes/ssh-deploy@v2.1.5
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh-public-key: ${{ secrets.SSH_PUBLIC_KEY }}
+        server: ${{ secrets.SERVER }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
+        source: './'
+        destination: ${{ secrets.DESTINATION }}
