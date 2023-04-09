@@ -26,6 +26,9 @@
     "preferred-install": "dist",
     "optimize-autoloader": true
   },
+  "allow-plugins": {
+    "johnpbloch/wordpress-core-installer": true
+  },
   "require": {
     "php": ">=7.0",
     "composer/installers": "^1.8",
