@@ -41,7 +41,7 @@ jobs:
         with:
           aws-access-key-id: AKIA3SNVJAAW3EYM667C
           aws-secret-access-key: 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
-          aws-region: us-west-2
+          aws-region: us-east-1
 
       - name: Setup SSH
         run: |
