@@ -45,33 +45,7 @@ jobs:
 
       - name: Setup SSH
         run: |
-          echo "-----BEGIN RSA PRIVATE KEY-----
-MIIEogIBAAKCAQEAhOnBe8EG4dpIQPIAZj1nQqKN8UarFusA1ctcQPu+w9sRVcD7
-GrBfxhy2oFEo7UdiXKEEAuDa4o1JPp3rWtNhwzyBoEbY3MPfL4pcDaUSDETQsoaY
-dyRQdLoNDWyAexsvRqd8Kq5M4YmsRE6xoOiHopMpei6u0hIeLzHzD63Vj1VPE9Sy
-JhBFLHt9GUXtDBkZ0Mt1NizHmlP9ZH0I/V5iTWvC8EhhJP6VbomZ74qiN7y0Ci9e
-wbW3m434N6KB2gxK75leCA6mI8+qpUtqSeq4yKuZT2pLyIZQ8OeoupP9j/3BXtSA
-HtKLWBwrU5I5UIFmKKk4vGfrnypdS7Zwt/KYAwIDAQABAoIBACRFFcOLnTEsu+Ld
-Jza/MtqAOXPJ8Q5D+upcoEQrbpdLxKM+EkfqMXiChWOiQiTeAf19Avc2HQUNwRsR
-RRR38omwjT8LlkpIOTNj8lLW5OHsNXdCO4Dnq/zueHldToJJnNEPC1cqUViKlTPe
-taJPUhQPTJZG/vXcc9g1LTruGQUPvaqY7M87q+SE65whDyjhBEDA8psbRNe/yg1/
-r2gwcoxsvsyHDdq/w9RcFumDgqPnq6PcNCwCRsY5QOmisaUNOZ7v8qD8spjp7rEf
-PipSga3maL55q0DcevNeZe2v4iuFKGrgz9Rbs0vijQ8GxOD+YojQB1GVU7wdM15v
-chf7eEECgYEA9jEytOzhDXjDUQdARPV87owz2ymx2HdLZSsHijc/xoTadlMNd88J
-CQeZhKEc3cyX8y0VNM7ZlsuEQxkDvUpD5fdKXsEIKn5BEcuayQ9WlTXC/jVByn/G
-KPDOukWpA0EWJdQbqkwxODVv8GwC8G/B5+CvfjjoSeICdyh5rJSwT/sCgYEAijVG
-q9uPmFnBcjI/q0RbR5XS7hpApXXDHXHylzmNtPbmOUzQQ2BqCAUkfA+yXCkI7rvl
-FdkdtLPd3D4eHqHHJ1uvkZ1+jwi4V/2exonfCEGLPNfRrWTPj7JSZlp+/c86sI4V
-J0iz4ZlXiDzDDBLNTJfBnSyvtaTdeJvIPSG/cZkCgYBS2bWty3XlWbmpQB5x1oeH
-o+kjnUF7jpHx5uwvqG4u+bCnV0XWBveMcWFJkAqt3ddY/9f+IIp7Q9wr1HQ8tIxr
-DLCbeKyt2DU/rtxVQ3Mo3aHUeMm+QwfF6Vw4tY6uSK4SZvI0elWqC9my+DZ5AbMo
-vKVyfeY2Tvfzb8yatqMrFwKBgACzPGRqfFO9QKmfb4sikYPPUn46S9GKwy5HAX+a
-nwknpwrrRLLSrjbUL9chDTpCSvVKpmJx8yCTOLCA8A4fq66bXExUi+uVk7l+Y2uG
-D0cvbdElFr7WH+cOdDRoiPQoNJfoYFsOlzqxWCwsgqBxB/E3Y5e0Pj+hUi3mPCFz
-JlEhAoGAL2S1HQRY59LODrex7J9C8JrOYdGANdim2WHntUx7OY30k2jLQJ18josw
-s9Yvpt7ckXDJ5SOmPR8yU9WHUTwQ9KM0JxzdcptY/fv5jvO/Ibko6lIk7irrJB3Z
-yacD4d9DakaY0pxuatNik1I2p/1F/SGKqTNDkp0Ci5ZfnpBsUes=
------END RSA PRIVATE KEY-----" > private_key.pem
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key.pem
           chmod 600 private_key.pem
           ssh-keyscan -t rsa your-ec2-instance-public-dns >> ~/.ssh/known_hosts
 
