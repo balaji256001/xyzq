@@ -39,8 +39,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: AKIA3SNVJAAW3EYM667C
-          aws-secret-access-key: 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
+          aws-access-key-id:
+          aws-secret-ac
           aws-region: us-east-1
 
       - name: Setup SSH
